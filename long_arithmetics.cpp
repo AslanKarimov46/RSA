@@ -238,18 +238,11 @@ std::deque<uint8_t> pow_mod(const std::deque<uint8_t>& x,
 										const std::deque<uint8_t>& y, const std::deque<uint8_t>& n){
 	std::deque<uint8_t> result, deq0={0}, binary_y=binary_deq(y), a, b=x%n;
 	std::deque< std::deque<uint8_t> > x_pow_y_mod_n;
-	//std::cout<<"binary_y="<<binary_y<<"\n";
 	x_pow_y_mod_n.push_back(b);
-	//std::cout<<"x_pow_y_mod_n[0]="<<x_pow_y_mod_n[0]<<"\n";
 	for(int i=1; i!=binary_y.size(); i++){
 		a=((*x_pow_y_mod_n.rbegin())*(*x_pow_y_mod_n.rbegin()))%n;
 		x_pow_y_mod_n.push_back(a);
-		//std::cout<<"x_pow_y_mod_n["<<i<<"]="<<x_pow_y_mod_n[i]<<"\n";
 	}
-
-	/*for(int i=0; i!=binary_y.size(); i++)
-		std::cout<<x_pow_y_mod_n[i]<<"  ";
-	std::cout<<"\n";*/
 
 	for(int i=binary_y.size()-1; i!=-1; i--){
 		if(binary_y[i]==0){
@@ -257,10 +250,6 @@ std::deque<uint8_t> pow_mod(const std::deque<uint8_t>& x,
 		}
 	}
 	result=x_pow_y_mod_n[0];
-
-	/*for(int i=0; i!=binary_y.size(); i++)
-		std::cout<<x_pow_y_mod_n[i]<<"  ";
-	std::cout<<"\n";*/
 
 	for(int i=1; i!=binary_y.size(); i++){
 		result=(result*x_pow_y_mod_n[i])%n;
